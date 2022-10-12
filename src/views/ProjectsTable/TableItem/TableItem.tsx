@@ -37,16 +37,24 @@ const TableItem = ({ project, onBuy, id }: ITableItem) => {
         <span className={styles.cellText}>{project.conditions}</span>
       </td>
       <td className={styles.cell}>
-        <span className={styles.cellText}>$ {project.volume}</span>
+        <span className={styles.cellText}>
+          $ {Intl.NumberFormat().format(project.volume)}
+        </span>
       </td>
       <td className={styles.cell}>
-        <span className={styles.cellText}>{project.roi} %</span>
+        <span className={styles.cellText}>
+          {Intl.NumberFormat().format(project.roi)} %
+        </span>
       </td>
       <td className={styles.cell}>
-        <span className={styles.cellText}>{project.free}</span>
+        <span className={styles.cellText}>
+          {Intl.NumberFormat().format(project.free)}
+        </span>
       </td>
       <td className={styles.cell}>
-        <span className={styles.cellText}>{project.hedge} %</span>
+        <span className={styles.cellText}>
+          {Intl.NumberFormat().format(project.hedge)} %
+        </span>
       </td>
       <td className={`${styles.buttonCell} ${styles.cell}`}>
         <button onClick={handleClick} className={styles.button}>
