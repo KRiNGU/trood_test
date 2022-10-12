@@ -1,15 +1,31 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StatusIndicator from '../../../components/StatusIndicator';
 import { Project } from '../../../model/project';
 import styles from './TableItem.module.sass';
 
 export interface ITableItem {
   project: Project;
+  onBuy: () => void;
+  id: number;
 }
 
-const TableItem = ({ project }: ITableItem) => {
+const TableItem = ({ project, onBuy, id }: ITableItem) => {
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      onBuy();
+    },
+    [onBuy]
+  );
+
+  const navigate = useNavigate();
+
   return (
-    <tr className={`${styles.div} ${styles[`theme-${project.status}`]}`}>
+    <tr
+      onClick={() => navigate(`/project/${id}`)}
+      className={`${styles.div} ${styles[`theme-${project.status}`]}`}
+    >
       <td className={styles.cell}>
         <StatusIndicator status={project.status} />
         <span className={styles.cellText}>{project.name}</span>
@@ -33,7 +49,9 @@ const TableItem = ({ project }: ITableItem) => {
         <span className={styles.cellText}>{project.hedge} %</span>
       </td>
       <td className={`${styles.buttonCell} ${styles.cell}`}>
-        <button className={styles.button}>Buy</button>
+        <button onClick={handleClick} className={styles.button}>
+          Buy
+        </button>
       </td>
     </tr>
   );
