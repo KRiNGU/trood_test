@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
+import { useAppSelector } from './hooks/hooks';
+import { Project } from './model/project';
 const App: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
-  const onCountClick = useCallback(() => {
-    setCount((prev) => prev + 1);
-  }, []);
+  const projects = useAppSelector<Project[]>((state) => state.projects);
   return (
     <>
-      <h1>Count: {count}</h1>
-      <button onClick={onCountClick}>Add</button>
+      {projects.map((project) => (
+        <div>{project.name}</div>
+      ))}
     </>
   );
 };
