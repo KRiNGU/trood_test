@@ -2,6 +2,8 @@ import { useCallback, useState } from 'react';
 import { useAppSelector } from './hooks/hooks';
 import { Project } from './model/project';
 import ProjectsTable from './views/ProjectsTable';
+import './resetStyles.sass';
+
 const App = () => {
   const projects = useAppSelector<Project[]>((state) => state.projects);
 

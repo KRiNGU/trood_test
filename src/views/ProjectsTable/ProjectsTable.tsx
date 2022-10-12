@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { Project } from '../../model/project';
 import TableItem from './TableItem';
+import styles from './ProjectsTable.module.sass';
+import TableHeader from './TableHeader';
 
 export interface IProjectsTable {
   items: Project[];
@@ -8,11 +10,16 @@ export interface IProjectsTable {
 
 const ProjectsTable = ({ items }: IProjectsTable) => {
   return (
-    <>
-      {items.map((item, index) => (
-        <TableItem project={item} key={index} />
-      ))}
-    </>
+    <table className={styles.table}>
+      <thead>
+        <TableHeader />
+      </thead>
+      <tbody>
+        {items.map((item, index) => (
+          <TableItem project={item} key={index} />
+        ))}
+      </tbody>
+    </table>
   );
 };
 

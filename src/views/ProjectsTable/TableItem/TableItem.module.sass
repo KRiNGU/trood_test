@@ -1,2 +1,47 @@
 .div
     background-color: red
+    height: 50px
+    &:not(:first-child)
+        border-top: 5px solid #fff
+
+.cell
+    padding: 0 10px
+    &:first-child
+        border-bottom-left-radius: 5px
+        border-top-left-radius: 5px
+    &:last-child
+        border-top-right-radius: 5px
+        border-bottom-right-radius: 5px
+
+.cellText
+    margin-left: 5px
+
+.theme-green
+    background-color: #f1fef3
+    &:hover
+        background-color: #afe2c7
+
+.theme-yellow
+    background-color: #fdffe7
+    &:hover
+        background-color: #f0e7bc
+
+.theme-red
+    background-color: #fff6f7
+    &:hover
+        background-color: #f8c7cc
+
+.buttonCell
+    width: 70px
+
+.button
+    width: 50px
+    border: 1px solid #c224c2
+    color: #c224c2
+    background-color: transparent
+    border-radius: 5px
+    height: 30px
+    cursor: pointer
+    &:hover
+        background-color: #c224c2
+        color: white
