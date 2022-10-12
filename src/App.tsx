@@ -4,6 +4,7 @@ import { Filter, Project } from './model/project';
 import ProjectsTable from './views/ProjectsTable';
 import './resetStyles.sass';
 
+// All possible sort values as a type
 export type ISort =
   | keyof Project
   | '-id'
@@ -28,6 +29,7 @@ const App = () => {
 
   const onSortChange = useCallback((sort: ISort) => {
     setSort((prev) =>
+      // Because the descending sort is displayed as ascending with '-', we check for '-' before setting up a new sort
       prev !== sort || prev[0] === '-' ? sort : (`-${sort}` as ISort)
     );
   }, []);

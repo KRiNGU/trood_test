@@ -36,6 +36,8 @@ const TableHeader = ({
     [onSort]
   );
 
+  // The td's id will show us what sort we are chosing
+
   return (
     <tr className={styles.header}>
       <td onClick={handleSortClick} id="name" className={styles.cell}>

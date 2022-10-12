@@ -4,6 +4,8 @@ import { Project } from '../model/project';
 
 export type ITableSlice = Project[];
 
+// Initializing the store the with values we want to work with
+
 const initialState: ITableSlice = [
   {
     id: 1,
