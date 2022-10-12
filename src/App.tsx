@@ -4,7 +4,17 @@ import { Filter, Project } from './model/project';
 import ProjectsTable from './views/ProjectsTable';
 import './resetStyles.sass';
 
-export type ISort = keyof Project | '-';
+export type ISort =
+  | keyof Project
+  | '-id'
+  | '-name'
+  | '-status'
+  | '-type'
+  | '-conditions'
+  | '-volume'
+  | '-roi'
+  | '-free'
+  | '-hedge';
 
 const App = () => {
   const projects = useAppSelector<Project[]>((state) => state.projects);
@@ -14,10 +24,12 @@ const App = () => {
     type: 'all',
   });
 
-  const [sort, setSort] = useState<ISort>('-');
+  const [sort, setSort] = useState<ISort>('id');
 
   const onSortChange = useCallback((sort: ISort) => {
-    setSort((prev) => (prev !== sort ? sort : '-'));
+    setSort((prev) =>
+      prev !== sort || prev[0] === '-' ? sort : (`-${sort}` as ISort)
+    );
   }, []);
 
   const onFilterChange = useCallback((filter: Filter) => {

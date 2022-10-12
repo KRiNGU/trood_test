@@ -24,10 +24,22 @@ const ProjectsTable = ({
 }: IProjectsTable) => {
   let sortedItems = [...items];
 
-  if (sort !== '-') {
-    sortedItems.sort((a, b) =>
-      a[sort] > b[sort] ? 1 : a[sort] === b[sort] ? 0 : -1
-    );
+  const isSortDecs = sort[0] === '-';
+  const sortedField: keyof Project =
+    sort[0] === '-'
+      ? (sort.slice(1) as keyof Project)
+      : (sort as keyof Project);
+
+  sortedItems.sort((a, b) =>
+    a[sortedField] > b[sortedField]
+      ? 1
+      : a[sortedField] === b[sortedField]
+      ? 0
+      : -1
+  );
+
+  if (isSortDecs) {
+    sortedItems = sortedItems.reverse();
   }
 
   if (filter.status !== 'all' || filter.type !== 'all') {
